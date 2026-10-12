@@ -1,0 +1,35 @@
+tables:
+  players:
+    description: One row per player.
+    columns:
+      player_id: Unique ID. Joins to matches.player_a_id, player_b_id and winner_id.
+      display_name: The player's name.
+  matches:
+    description: >
+      One row per singles match. ONLY rows with status = 'active' count.
+      Voided rows are corrections and must always be excluded.
+    columns:
+      match_id: Unique ID. Joins to games.match_id.
+      sport: badminton or squash, in lower case.
+      played_on: Date the match was played.
+      player_a_id: First player (players.player_id).
+      player_b_id: Second player (players.player_id).
+      winner_id: The winner. Always equal to player_a_id or player_b_id.
+      status: active or voided. Always filter on status = 'active'.
+  games:
+    description: One row per game within a match.
+    columns:
+      match_id: The match (matches.match_id).
+      game_no: 1 for the first game, 2 for the second, and so on.
+      score_a: Points scored in this game by the match's player A.
+      score_b: Points scored in this game by the match's player B.
+  rankings:
+    description: Current Elo rankings, one row per player per sport, rebuilt after every save.
+    columns:
+      sport: badminton or squash.
+      player_id: The player (players.player_id).
+      rating: Elo rating. Everyone starts at 1000.
+      matches_played: Active matches played in this sport.
+      wins: Matches won.
+      losses: Matches lost.
+      rank: 1 is best. Empty until the player has played 3 matches.

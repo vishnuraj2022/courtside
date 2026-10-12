@@ -1,0 +1,8 @@
+anthropic
+duckdb
+pandas
+python-dotenv
+streamlit
+pytest
+pyyaml
+sqlglot

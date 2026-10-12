@@ -1,0 +1,12 @@
+# Secrets
+.env
+.streamlit/secrets.toml
+
+# Python
+.venv/
+__pycache__/
+.pytest_cache/
+
+# Database: rebuilt by seed.py, and may hold real names
+*.duckdb
+*.wal
